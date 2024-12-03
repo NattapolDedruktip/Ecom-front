@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import useEcomStore from "../../store/ecom-store";
 import { createProduct } from "../../api/product";
 import { toast } from "react-toastify";
+import UploadFile from "./UploadFile";
 
 const initialState = {
   title: "",
@@ -27,7 +28,7 @@ const FormProduct = () => {
   }, []);
 
   const hdlOnChange = (e) => {
-    console.log(e.target.name, e.target.value);
+    // console.log(e.target.name, e.target.value);
     setForm({
       ...form,
       [e.target.name]: e.target.value,
@@ -103,6 +104,7 @@ const FormProduct = () => {
         </select>
 
         <hr />
+        <UploadFile form={form} setForm={setForm} />
         <button className="bg-blue-300">Add Product</button>
       </form>
 
@@ -125,7 +127,7 @@ const FormProduct = () => {
         <tbody>
           {products.map((item, index) => {
             return (
-              <tr>
+              <tr key={index}>
                 <th scope="row">{index + 1}</th>
                 <td>{item.title}</td>
                 <td>{item.description}</td>
