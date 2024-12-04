@@ -77,7 +77,7 @@ const UploadFile = ({ form, setForm }) => {
     <div>
       <div className="my-4">
         <div className="flex mx-4 gap-4 my-4">
-          {form.images.map((item, index) => (
+          {form?.images?.map((item, index) => (
             <div className="relative" key={index}>
               <img src={item.url} className="w-24 h-24 hover:scale-105" />
               <span
