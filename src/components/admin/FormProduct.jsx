@@ -1,15 +1,18 @@
 import { useEffect, useState } from "react";
 import useEcomStore from "../../store/ecom-store";
-import { createProduct } from "../../api/product";
+import { createProduct, deleteProduct } from "../../api/product";
 import { toast } from "react-toastify";
 import UploadFile from "./UploadFile";
 import { Link } from "react-router-dom";
+import { Trash2 } from "lucide-react";
+import { Pencil } from "lucide-react";
+import { CirclePlus } from "lucide-react";
 
 const initialState = {
   title: "",
   description: "",
-  price: "",
-  quantity: "",
+  price: 0,
+  quantity: 0,
   categoryId: "",
   images: [],
 };
@@ -20,7 +23,14 @@ const FormProduct = () => {
   const products = useEcomStore((state) => state.products);
   const getCategory = useEcomStore((state) => state.getCategory);
   const getProduct = useEcomStore((state) => state.getProduct);
-  const [form, setForm] = useState(initialState);
+  const [form, setForm] = useState({
+    title: "",
+    description: "",
+    price: 0,
+    quantity: 0,
+    categoryId: "",
+    images: [],
+  });
   //   console.log(products);
 
   useEffect(() => {
@@ -36,12 +46,27 @@ const FormProduct = () => {
     });
   };
 
+  const hdlDelete = async (id) => {
+    console.log("id", id);
+    if (window.confirm("Do you really need to delete it ?")) {
+      try {
+        const res = await deleteProduct(token, id);
+        console.log("res", res);
+        getProduct(token, 20);
+        toast.success(`Delete product id : ${id} success!`);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+  };
+
   const hdlSubmit = async (e) => {
     e.preventDefault();
     console.log("form", form);
     try {
       const res = await createProduct(token, form);
       console.log(res);
+      setForm(initialState);
       getProduct(token, 20);
       toast.success(`Add product ${res?.data?.title} success`);
     } catch (err) {
@@ -107,15 +132,17 @@ const FormProduct = () => {
 
         <hr />
         <UploadFile form={form} setForm={setForm} />
-        <button className="bg-blue-300">Add Product</button>
+        <button className=" flex justify-center bg-blue-300 hover:scale-105 hover:duration-200">
+          <CirclePlus /> Add Product
+        </button>
       </form>
 
       <hr />
       <br />
 
-      <table class="table">
+      <table class="table w-full border">
         <thead>
-          <tr>
+          <tr className="bg-gray-200 border">
             <th scope="col">No.</th>
             <th scope="col">Pic</th>
             <th scope="col">Name</th>
@@ -150,11 +177,18 @@ const FormProduct = () => {
                 <td>{item.quantity}</td>
                 <td>{item.sold}</td>
                 <td>{item.updatedAt}</td>
-                <td>
-                  <p className="bg-yellow-500 rounded-md p-1 shadow-md text-center">
-                    <Link to={"/admin/product/" + item.id}>Edit</Link>
+                <td className="flex gap-2 ">
+                  <p className="bg-yellow-500 rounded-md p-1 shadow-md text-center hover:-translate-y-1 hover:duration-200">
+                    <Link to={"/admin/product/" + item.id}>
+                      <Pencil />
+                    </Link>
                   </p>
-                  <p>Delete</p>
+                  <p
+                    className="bg-red-500 rounded-md p-1 shadow-md text-center cursor-pointer hover:-translate-y-1 hover:duration-200"
+                    onClick={() => hdlDelete(item.id)}
+                  >
+                    <Trash2 />
+                  </p>
                 </td>
               </tr>
             );
