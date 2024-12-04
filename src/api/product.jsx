@@ -59,3 +59,7 @@ export const removeFiles = async (token, public_id) => {
     }
   );
 };
+
+export const searchFilters = async (arg) => {
+  return await axios.post("http://localhost:8000/api/search/filters", arg);
+};

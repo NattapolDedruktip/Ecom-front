@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import ProductCard from "../components/card/ProductCard";
 import useEcomStore from "../store/ecom-store";
+import SearchCard from "../components/card/SearchCard";
 
 const Shop = () => {
   const getProduct = useEcomStore((state) => state.getProduct);
@@ -13,7 +14,9 @@ const Shop = () => {
   return (
     <div className="flex">
       {/* Search bar */}
-      <div className="w-1/4 p-4 bg-gray-100 h-screen">search bar</div>
+      <div className="w-1/4 p-4 bg-gray-100 h-screen">
+        <SearchCard />
+      </div>
       {/* Product */}
       <div className="w-1/2 p-2">
         <p className="text-2xl font-bold mb-4">Total Product</p>
