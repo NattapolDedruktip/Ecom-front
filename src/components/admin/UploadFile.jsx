@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { toast } from "react-toastify";
 import Resizer from "react-image-file-resizer";
-import { uploadFiles } from "../../api/product";
+import { removeFiles, uploadFiles } from "../../api/product";
 import useEcomStore from "../../store/ecom-store";
 
 const UploadFile = ({ form, setForm }) => {
@@ -52,8 +52,44 @@ const UploadFile = ({ form, setForm }) => {
       }
     }
   };
+
+  const hdlDelete = (public_id) => {
+    const images = form.images;
+    console.log(public_id);
+    removeFiles(token, public_id)
+      .then((res) => {
+        console.log("res", res);
+        const filterImages = images.filter((item, index) => {
+          console.log(item);
+          return item.public_id !== public_id;
+        });
+        console.log("filterImages", filterImages);
+        setForm({
+          ...form,
+          images: filterImages,
+        });
+        toast.error(res.data);
+      })
+      .catch((err) => console.log("err", err));
+  };
+  //   console.log("form", form);
   return (
     <div>
+      <div className="my-4">
+        <div className="flex mx-4 gap-4 my-4">
+          {form.images.map((item, index) => (
+            <div className="relative" key={index}>
+              <img src={item.url} className="w-24 h-24 hover:scale-105" />
+              <span
+                className="absolute top-0 right-0 bg-red-200 p-1 rounded"
+                onClick={() => hdlDelete(item.public_id)}
+              >
+                X
+              </span>
+            </div>
+          ))}
+        </div>
+      </div>
       <input type="file" name="images" multiple onChange={hdlOnChange} />
     </div>
   );

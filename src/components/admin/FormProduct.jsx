@@ -41,6 +41,7 @@ const FormProduct = () => {
     try {
       const res = await createProduct(token, form);
       console.log(res);
+      getProduct(token, 20);
       toast.success(`Add product ${res?.data?.title} success`);
     } catch (err) {
       console.log(err);
