@@ -24,7 +24,7 @@ const FormEditProduct = () => {
   //   console.log(products);
 
   useEffect(() => {
-    getCategory(token);
+    getCategory();
     fetchProduct(token, id, form);
   }, []);
 

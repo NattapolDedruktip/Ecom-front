@@ -34,8 +34,8 @@ const FormProduct = () => {
   //   console.log(products);
 
   useEffect(() => {
-    getCategory(token);
-    getProduct(token, 20);
+    getCategory();
+    getProduct(20);
   }, []);
 
   const hdlOnChange = (e) => {
@@ -52,7 +52,7 @@ const FormProduct = () => {
       try {
         const res = await deleteProduct(token, id);
         console.log("res", res);
-        getProduct(token, 20);
+        getProduct(20);
         toast.success(`Delete product id : ${id} success!`);
       } catch (err) {
         console.log(err);
@@ -67,7 +67,7 @@ const FormProduct = () => {
       const res = await createProduct(token, form);
       console.log(res);
       setForm(initialState);
-      getProduct(token, 20);
+      getProduct(20);
       toast.success(`Add product ${res?.data?.title} success`);
     } catch (err) {
       console.log(err);
