@@ -18,7 +18,7 @@ const SearchCard = () => {
   const [ok, setOk] = useState(false);
 
   //search by text
-  console.log("text", text);
+  //   console.log("text", text);
   useEffect(() => {
     const delay = setTimeout(() => {
       if (text) {
