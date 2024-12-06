@@ -1,12 +1,28 @@
 import { ListCheck } from "lucide-react";
 import useEcomStore from "../../store/ecom-store";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { createUserCart } from "../../api/user";
+import { toast } from "react-toastify";
 
 const ListCart = () => {
   const user = useEcomStore((state) => state.user);
   const token = useEcomStore((state) => state.token);
   const cart = useEcomStore((state) => state.carts);
   const getTotalPrice = useEcomStore((state) => state.actionGetTotalPrice);
+
+  const navigate = useNavigate();
+
+  const hdlSaveCart = async () => {
+    await createUserCart(token, { cart })
+      .then((res) => {
+        console.log("res", res);
+        toast.success("Add to Cart Success!");
+        navigate("/checkout");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   return (
     <div className="bg-gray-100 rounded-sm p-4">
@@ -74,12 +90,12 @@ const ListCart = () => {
               <Link>
                 <button
                   disabled={cart.length < 1}
-                  //   onClick={handleSaveCart}
+                  onClick={hdlSaveCart}
                   className="bg-red-500 w-full
                     rounded-md text-white py-2 shadow-md hover:bg-red-700
                     "
                 >
-                  Pay now
+                  Prepare Checkout
                 </button>
               </Link>
             ) : (
