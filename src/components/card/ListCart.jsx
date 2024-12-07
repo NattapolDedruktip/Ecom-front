@@ -21,6 +21,7 @@ const ListCart = () => {
       })
       .catch((err) => {
         console.log(err);
+        toast.warning(err.response.data.message);
       });
   };
 

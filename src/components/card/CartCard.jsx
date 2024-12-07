@@ -12,7 +12,7 @@ const CartCard = () => {
   const actionGetTotalPrice = useEcomStore(
     (state) => state.actionGetTotalPrice
   );
-  console.log("carts", carts);
+  // console.log("carts", carts);
   return (
     <div>
       <h1 className="text-2xl font-bold">Product Cart</h1>
