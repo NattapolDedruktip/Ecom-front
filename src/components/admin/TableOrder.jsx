@@ -53,7 +53,7 @@ const TableOrder = () => {
 
   //   console.log(orders);
   return (
-    <div className="container mx-auto p-4 bg-white shadow-md bh">
+    <div className="container mx-auto p-4 bg-white shadow-md ">
       <div>
         <table className="w-full ">
           <thead>
