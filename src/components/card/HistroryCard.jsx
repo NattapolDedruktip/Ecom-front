@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { getOrders } from "../../api/user";
 import useEcomStore from "../../store/ecom-store";
+import { dateFormat } from "../../utils/date";
+import { numberFormat } from "../../utils/number";
 
 const HistroryCard = () => {
   const [orders, setOrders] = useState([]);
@@ -22,6 +24,19 @@ const HistroryCard = () => {
       });
   };
 
+  const getStatusColor = (status) => {
+    switch (status) {
+      case "Not Process":
+        return "bg-gray-200";
+      case "Processing":
+        return "bg-blue-300";
+      case "Completed":
+        return "bg-green-300";
+      case "Cancelled":
+        return "bg-red-300";
+    }
+  };
+
   console.log("orders", orders);
   return (
     <div className="space-y-4">
@@ -35,10 +50,20 @@ const HistroryCard = () => {
               <div className="flex justify-between">
                 <div>
                   <p className="text-sm">Order Data</p>
-                  <p className="font-bold">{item.updatedAt}</p>
+                  <p className="font-bold">{dateFormat(item.updatedAt)}</p>
                 </div>
 
-                <div>{item.orderStatus} </div>
+                <div>
+                  {
+                    <span
+                      className={`${getStatusColor(
+                        item.orderStatus
+                      )} p-2 rounded-md shadow-md`}
+                    >
+                      {item.orderStatus}
+                    </span>
+                  }{" "}
+                </div>
               </div>
 
               <div>
@@ -57,9 +82,13 @@ const HistroryCard = () => {
                       return (
                         <tr key={index}>
                           <td>{product.product.title}</td>
-                          <td>{product.product.price} </td>
+                          <td>{numberFormat(product.product.price)} </td>
                           <td>{product.count} </td>
-                          <td>{product.count * product.product.price}</td>
+                          <td>
+                            {numberFormat(
+                              product.count * product.product.price
+                            )}
+                          </td>
                         </tr>
                       );
                     })}
@@ -70,7 +99,7 @@ const HistroryCard = () => {
               <div>
                 <div className="text-right">
                   <p>Total</p>
-                  <p>{item.cartTotal}</p>
+                  <p>{numberFormat(item.cartTotal)}</p>
                 </div>
               </div>
             </div>

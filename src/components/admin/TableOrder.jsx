@@ -3,6 +3,7 @@ import useEcomStore from "../../store/ecom-store";
 import { changeOrdersStatus, getOrdersAdmin } from "../../api/admin";
 import { toast } from "react-toastify";
 import { numberFormat } from "../../utils/number";
+import { dateFormat } from "../../utils/date";
 
 const TableOrder = () => {
   const token = useEcomStore((state) => state.token);
@@ -59,6 +60,7 @@ const TableOrder = () => {
             <tr className="bg-gray-100 border">
               <th>No.</th>
               <th>User</th>
+              <th>Date</th>
               <th>Products</th>
               <th>Total</th>
               <th>Status</th>
@@ -74,6 +76,7 @@ const TableOrder = () => {
                   <td>
                     <p> {item.orderedBy.email}</p>
                   </td>
+                  <td>{dateFormat(item.createdAt)}</td>
                   <td className="px-2 py-4">
                     {item.products?.map((product, index) => (
                       <li key={index}>

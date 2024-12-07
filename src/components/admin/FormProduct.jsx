@@ -8,6 +8,7 @@ import { Trash2 } from "lucide-react";
 import { Pencil } from "lucide-react";
 import { CirclePlus } from "lucide-react";
 import { numberFormat } from "../../utils/number";
+import { dateFormat } from "../../utils/date";
 
 const initialState = {
   title: "",
@@ -177,7 +178,7 @@ const FormProduct = () => {
                 <td>{numberFormat(item.price)}</td>
                 <td>{item.quantity}</td>
                 <td>{item.sold}</td>
-                <td>{item.updatedAt}</td>
+                <td>{dateFormat(item.updatedAt)}</td>
                 <td className="flex gap-2 ">
                   <p className="bg-yellow-500 rounded-md p-1 shadow-md text-center hover:-translate-y-1 hover:duration-200">
                     <Link to={"/admin/product/" + item.id}>
