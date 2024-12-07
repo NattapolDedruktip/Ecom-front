@@ -4,6 +4,7 @@ import { listUserCart } from "../../api/user";
 import { saveUserAddress } from "../../api/user";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import { numberFormat } from "../../utils/number";
 
 const SummaryCard = () => {
   const token = useEcomStore((state) => state.token);
@@ -89,13 +90,14 @@ const SummaryCard = () => {
                   <div>
                     <p className="font-bold">{item.product.title}</p>
                     <p className="tet-sm">
-                      Quantity : {item.count} x {item.product.price}{" "}
+                      Quantity : {item.count} x{" "}
+                      {numberFormat(item.product.price)}{" "}
                     </p>
                   </div>
 
                   <div>
                     <p className="text-red-500 font-bold">
-                      {item.product.price * item.count}
+                      {numberFormat(item.product.price * item.count)}
                     </p>
                   </div>
                 </div>
@@ -121,7 +123,9 @@ const SummaryCard = () => {
 
               <div className="flex justify-between">
                 <p className="font-bold">Total :</p>
-                <p className="text-red-500 font-bold text-lg">{cartTotal}</p>
+                <p className="text-red-500 font-bold text-lg">
+                  {numberFormat(cartTotal)}
+                </p>
               </div>
             </div>
 

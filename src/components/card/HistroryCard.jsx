@@ -43,12 +43,14 @@ const HistroryCard = () => {
 
               <div>
                 <table className="border w-full rounded-md ">
-                  <tr className="bg-gray-200">
-                    <th>Product</th>
-                    <th>Price</th>
-                    <th>Quantity</th>
-                    <th>total</th>
-                  </tr>
+                  <thead>
+                    <tr className="bg-gray-200">
+                      <th>Product</th>
+                      <th>Price</th>
+                      <th>Quantity</th>
+                      <th>total</th>
+                    </tr>
+                  </thead>
 
                   <tbody>
                     {item.products?.map((product, index) => {
