@@ -8,6 +8,8 @@ import {
 import "../stripe.css";
 import useEcomStore from "../store/ecom-store";
 import { saveOrder } from "../api/user";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 export default function CheckoutForm() {
   const stripe = useStripe();
@@ -16,6 +18,8 @@ export default function CheckoutForm() {
 
   const [message, setMessage] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -39,16 +43,23 @@ export default function CheckoutForm() {
     // be redirected to an intermediate site first to authorize the payment, then
     // redirected to the `return_url`.
     if (payload.error) {
-      setMessage(error.message);
-    } else {
+      setMessage(payload.error.message);
+      toast.error(payload.error.message);
+    } else if (payload.paymentIntent.status === "succeeded") {
+      console.log("ready or saveOrder");
       //createOrder
       saveOrder(token, payload)
         .then((res) => {
           console.log(res);
+          toast.success("Payment is completed !");
+          navigate("/user/history");
         })
         .catch((err) => {
           console.log(err);
         });
+    } else {
+      console.log("somethings wrong");
+      toast.warning("Payment is incomplete ");
     }
 
     setIsLoading(false);
