@@ -15,6 +15,7 @@ export default function CheckoutForm() {
   const stripe = useStripe();
   const elements = useElements();
   const token = useEcomStore((state) => state.token);
+  const clearCart = useEcomStore((state) => state.clearCart);
 
   const [message, setMessage] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -51,6 +52,7 @@ export default function CheckoutForm() {
       saveOrder(token, payload)
         .then((res) => {
           console.log(res);
+          clearCart();
           toast.success("Payment is completed !");
           navigate("/user/history");
         })

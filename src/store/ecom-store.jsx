@@ -79,6 +79,18 @@ const ecomStore = (set, get) => ({
       return total + item.price * item.count;
     }, 0);
   },
+  clearCart: () => {
+    set({ carts: [] });
+  },
+  logout: () => {
+    set({
+      user: null,
+      token: null,
+      categories: [],
+      products: [],
+      carts: [],
+    });
+  },
 });
 
 const usePersist = {

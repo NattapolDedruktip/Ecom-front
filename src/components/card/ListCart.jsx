@@ -105,6 +105,7 @@ const ListCart = () => {
             ) : (
               <Link to={"/login"}>
                 <button
+                  disabled={cart.length < 1}
                   className="bg-blue-500 w-full
                     rounded-md text-white py-2 shadow-md hover:bg-blue-700
                     "
