@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const payment = async (token) =>
   await axios.post(
-    "http://localhost:8000/api/user/create-payment-intent",
+    "https://ecom-back-pearl.vercel.app/api/user/create-payment-intent",
     {},
     {
       headers: {

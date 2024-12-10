@@ -57,7 +57,10 @@ const Register = () => {
     }
     console.log("ok ready to register");
     try {
-      const res = await axios.post("http://localhost:8000/api/register", data);
+      const res = await axios.post(
+        "https://ecom-back-pearl.vercel.app/api/register",
+        data
+      );
       console.log(res);
       toast.success(res.data);
     } catch (err) {

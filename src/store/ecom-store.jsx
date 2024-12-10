@@ -13,7 +13,10 @@ const ecomStore = (set, get) => ({
   carts: [],
 
   actionLogin: async (form) => {
-    const res = await axios.post("http://localhost:8000/api/login", form);
+    const res = await axios.post(
+      "https://ecom-back-pearl.vercel.app/api/login",
+      form
+    );
     // console.log(res.data);
     set({
       user: res.data.payload,
