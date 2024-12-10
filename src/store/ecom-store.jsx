@@ -14,7 +14,7 @@ const ecomStore = (set, get) => ({
 
   actionLogin: async (form) => {
     const res = await axios.post(
-      "https://ecom-back-pearl.vercel.app/api/login",
+      "https://ecom-back-sooty.vercel.app/api/login",
       form
     );
     // console.log(res.data);

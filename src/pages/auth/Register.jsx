@@ -58,7 +58,7 @@ const Register = () => {
     console.log("ok ready to register");
     try {
       const res = await axios.post(
-        "https://ecom-back-pearl.vercel.app/api/register",
+        "https://ecom-back-sooty.vercel.app/api/register",
         data
       );
       console.log(res);

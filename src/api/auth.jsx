@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const currentUser = async (token) =>
   await axios.post(
-    "https://ecom-back-pearl.vercel.app/api/current-user",
+    "https://ecom-back-sooty.vercel.app/api/current-user",
     {},
     {
       headers: {
@@ -13,7 +13,7 @@ export const currentUser = async (token) =>
 
 export const currentAdmin = async (token) => {
   return await axios.post(
-    "https://ecom-back-pearl.vercel.app/api/current-admin",
+    "https://ecom-back-sooty.vercel.app/api/current-admin",
     {},
     {
       headers: {
