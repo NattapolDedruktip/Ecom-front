@@ -135,7 +135,7 @@ const Register = () => {
             </div>
             <button className="bg-blue-500 rounded-md p-2 w-full text-white shadow-md hover:bg-blue-700">
               {" "}
-              register{" "}
+              Register{" "}
             </button>
           </div>
         </form>
