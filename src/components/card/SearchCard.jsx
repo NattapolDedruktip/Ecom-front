@@ -18,6 +18,10 @@ const SearchCard = () => {
   const [price, setPrice] = useState([1000, 30000]);
   const [ok, setOk] = useState(false);
 
+  useEffect(() => {
+    getCategory();
+  }, []);
+
   //search by text
   //   console.log("text", text);
   useEffect(() => {
@@ -66,6 +70,8 @@ const SearchCard = () => {
       setOk(!ok);
     }, 300);
   };
+
+  console.log("categories", categories);
 
   return (
     <div>
