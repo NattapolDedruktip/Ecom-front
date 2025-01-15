@@ -38,7 +38,59 @@ This project is an e-commerce website designed to support two user roles: user a
 
 ## Feature
 
+### User
+
+#### Search products
+
 ![search in shop page](src/assets/shopSearch.gif)
+
+- Users can search for products using text, product category, or price.
+- In the shopping cart, users can adjust the quantity of items or remove them as needed.
+
+#### Checkout order
+
+![checkout order](src/assets/Usercheckout2.gif)
+
+- Users must provide their address before proceeding to checkout.
+- use stripe component in payment integration
+
+#### Order history
+
+![order history](src/assets/orderHistory.png)
+
+- Orders that have been paid will initially have a status of "Not Processed."
+- The status will be updated by the admin to reflect progress, such as after verifying or shipping the order.
+
+### Admin
+
+#### Disable/Enable users in website
+
+![mange user](src/assets/adminMangeUser.gif)
+
+#### Add or Remove Category
+
+![add or remove category](src/assets/addOrRemoveCategory.gif)
+
+#### Add product
+
+![add product](src/assets/addProduct.gif)
+
+- Admins are required to fill in the product details, including the name, description, price, and quantity, and select a category for the product.
+- Admins must upload a product image before adding the product to the inventory.
+
+#### Edit or Remove product
+
+![edit or remove product](src/assets/editOrDeleteProduct.gif)
+
+- In the Edit menu, users can upload or remove product images and change the product's category.
+
+#### Order Management
+
+![update order](src/assets/OrderManange.gif)
+
+- Any updates made by the admin to an order will be reflected in the user's order history as well.
+
+![history](src/assets/historyDropdown.gif)
 
 ## Acknowledgment
 
