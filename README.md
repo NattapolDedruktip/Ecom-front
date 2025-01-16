@@ -61,6 +61,10 @@ This project is an e-commerce website designed to support two user roles: user a
 - Orders that have been paid will initially have a status of "Not Processed."
 - The status will be updated by the admin to reflect progress, such as after verifying or shipping the order.
 
+![transaction result](src/assets/stripeResultInWeb.png)
+
+- All transactions will be stored on the Stripe platform.
+
 ### Admin
 
 #### Disable/Enable users in website
